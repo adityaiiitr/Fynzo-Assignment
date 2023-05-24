@@ -29,7 +29,7 @@ const Type2 = ({ Data }) => {
       </select>
 
       {/* Button to submit selected dropdown item */}
-      <button onClick={() => console.log(selectedItem)}>Submit</button>
+      <button className='bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-4 mt-4' onClick={() => console.log(selectedItem)}>Submit</button>
     </div>
   );
 };

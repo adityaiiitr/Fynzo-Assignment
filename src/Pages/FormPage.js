@@ -198,12 +198,12 @@ const FormPage = () => {
       <div className='flex items-center justify-center mt-24 h-1/2'>
         <div className="max-w-sm rounded overflow-hidden shadow-lg bg-black bg-opacity-30 p-4">
         <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2 text-white">{Data.questions[questNum-90].question_text}</div>
-        {Data.questions[questNum-90].question_type===1 && <Type1 Data={Data.questions[questNum-90]}/>}
-        {Data.questions[questNum-90].question_type===2 && <Type2 Data={Data.questions[questNum-90]}/>}
-        {Data.questions[questNum-90].question_type===3 && <Type3 Data={Data.questions[questNum-90]}/>}
-        {Data.questions[questNum-90].question_type===4 && <Type4 Data={Data.questions[questNum-90]}/>}
-        {Data.questions[questNum-90].question_type===5 && <Type5 Data={Data.questions[questNum-90]}/>}
+        <div className="font-bold text-xl mb-2 text-white">{questNum<100 ? Data.questions[questNum-90].question_text: "Submitted Data"}</div>
+        {questNum<100 && Data.questions[questNum-90].question_type===1 && <Type1 Data={Data.questions[questNum-90]}/>}
+        {questNum<100 && Data.questions[questNum-90].question_type===2 && <Type2 Data={Data.questions[questNum-90]}/>}
+        {questNum<100 && Data.questions[questNum-90].question_type===3 && <Type3 Data={Data.questions[questNum-90]}/>}
+        {questNum<100 && Data.questions[questNum-90].question_type===4 && <Type4 Data={Data.questions[questNum-90]}/>}
+        {questNum<100 && Data.questions[questNum-90].question_type===5 && <Type5 Data={Data.questions[questNum-90]}/>}
         {questNum>=100 && <Display/>}
         </div>    
         
@@ -211,12 +211,12 @@ const FormPage = () => {
       
       
     </div>
-    {questNum<=100 && <div class="flex flex-row-reverse m-4 space-x-3 space-x-reverse md:mt-6">
-      <button onClick={()=>{setQuestNum(questNum+1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm  px-8 py-8"><AiOutlineArrowRight/></button>
-        {questNum>=90 && <button onClick={()=>{setQuestNum(questNum-1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-8"><AiOutlineArrowLeft/></button>}
+    <div class="flex flex-row-reverse m-4 space-x-3 space-x-reverse md:mt-6">
+    {questNum<=99 && <button onClick={()=>{setQuestNum(questNum+1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm  px-8 py-8"><AiOutlineArrowRight/></button>}
+        {questNum>=91 && <button onClick={()=>{setQuestNum(questNum-1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-8"><AiOutlineArrowLeft/></button>}
     
        
-        </div>}
+        </div>
   
     </div>
 
