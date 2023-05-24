@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
+import FormDataContext from '../Context/FormDataContext';
 
 const Type3 = ({Data}) => {
     console.log(Data.choices)
   const [checkboxItems, setCheckboxItems] = useState(Data.choices);
   const [selectedItems, setSelectedItems] = useState([]);
+
+  const { formData, setFormData } = useContext(FormDataContext);
+
 
   const handleCheckboxChange = (item) => {
     const updatedItems = [...selectedItems];
@@ -24,6 +28,18 @@ const Type3 = ({Data}) => {
     setCheckboxItems(Data.choices);
   }, [Data.choices]);
 
+  const handleInputChange = () => {
+    const name = Data.question_text.split(' ')[1]
+    const value = selectedItems
+    // console.log(name,value)
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+setSelectedItems([])
+  };
+
   return (
     <div className="space-y-4 mt-4">
       {/* Checkbox items */}
@@ -43,7 +59,7 @@ const Type3 = ({Data}) => {
       ))}
       
       {/* Button to submit selected items */}
-      <button className='bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-16 py-4' onClick={() => console.log(selectedItems)}>Submit</button>
+      <button className='bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-16 py-4' onClick={handleInputChange}>Submit</button>
     </div>
   );
 };

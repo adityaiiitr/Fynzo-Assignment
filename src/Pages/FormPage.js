@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Type1 from '../Components/Type1'
 import Type2 from '../Components/Type2'
 import Type3 from '../Components/Type3'
@@ -7,8 +7,16 @@ import Type5 from '../Components/Type5'
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import Display from '../Components/Display'
 
+import FormDataContext from '../Context/FormDataContext';
+
+
 const FormPage = () => {
-  const [questNum,setQuestNum] = useState(96)
+  const [questNum,setQuestNum] = useState(90)
+  const [formData, setFormData] = useState({}); // State to store form data
+
+  useEffect(()=>{
+    console.log(formData)
+  },[formData])
 
   const Data = {
     "setting": {
@@ -189,7 +197,7 @@ const FormPage = () => {
 
 
   return (
-    <>
+    <FormDataContext.Provider value={{ formData, setFormData }}>
     <div className='h-screen'>
       <div className='bg-black bg-opacity-30 p-4 text-white text-center'>
         <h1 className="text-3xl font-bold underline ">{Data.setting.title}</h1>
@@ -220,7 +228,7 @@ const FormPage = () => {
   
     </div>
 
-    </>
+    </FormDataContext.Provider>
   )
 }
 

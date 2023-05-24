@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import FormDataContext from '../Context/FormDataContext';
+
 
 const Type2 = ({ Data }) => {
+  console.log()
   const [dropdownItems, setDropdownItems] = useState([]);
+
+  const { formData, setFormData } = useContext(FormDataContext);
+
 
   useEffect(() => {
     setDropdownItems(Data.choices);
@@ -11,6 +17,18 @@ const Type2 = ({ Data }) => {
 
   const handleDropdownChange = (event) => {
     setSelectedItem(event.target.value);
+  };
+
+  const handleInputChange = () => {
+    const selectedId = selectedItem;
+    const name = Data.question_text.split(' ')[1]
+    const value = Data.choices.filter((item) => item.id === parseInt(selectedId))
+    console.log(name,value)
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -29,7 +47,7 @@ const Type2 = ({ Data }) => {
       </select>
 
       {/* Button to submit selected dropdown item */}
-      <button className='bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-4 mt-4' onClick={() => console.log(selectedItem)}>Submit</button>
+      <button onClick={handleInputChange} className='bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-4 mt-4'>Submit</button>
     </div>
   );
 };
