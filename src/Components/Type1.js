@@ -7,7 +7,9 @@ const Type1 = ({Data}) => {
   const [selectedItem, setSelectedItem] = useState({});
 
   const { formData, setFormData } = useContext(FormDataContext);
-
+  
+  var text = Data.question_text;
+  text = text.split(' ')[1];
 
   const handleRadioChange = (item) => {
     setSelectedItem(item);
@@ -15,6 +17,15 @@ const Type1 = ({Data}) => {
 
   useEffect(() => {
     setRadioItems(Data.choices);
+    // if(text==='Gender'){
+    //   const v = 'validation';
+    //     const vi = Data.id;
+    //     setFormData((prevFormData) => ({
+    //       ...prevFormData,
+    //       [v]: vi,
+    //     }));
+    //     console.log('FormData', formData);
+    // }
   }, [Data.choices]);
 
   const handleInputChange = (e) => {

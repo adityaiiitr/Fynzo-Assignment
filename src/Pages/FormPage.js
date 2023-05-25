@@ -16,6 +16,8 @@ const FormPage = () => {
 
   useEffect(()=>{
     console.log(formData)
+    if(formData?.Gender === 'Male') 
+    setQuestNum(100)
   },[formData])
 
   const Data = {
@@ -220,9 +222,10 @@ const FormPage = () => {
       
     </div>
     <div class="flex flex-row-reverse m-4 space-x-3 space-x-reverse md:mt-6">
-    {questNum<=99 && <button onClick={()=>{setQuestNum(questNum+1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm  px-8 py-8"><AiOutlineArrowRight/></button>}
-        {questNum>=91 && <button onClick={()=>{setQuestNum(questNum-1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-8"><AiOutlineArrowLeft/></button>}
-    
+    {questNum<=99 && <button onClick={()=>{formData.validation===questNum? setQuestNum(questNum):setQuestNum(questNum+1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm  px-8 py-8"><AiOutlineArrowRight/></button>}
+        {questNum>=91 && <button onClick={()=>{ setQuestNum(questNum-1)}} type="button" class="bg-opacity-60 text-white bg-gray-600 hover:bg-black focus:ring-gray-800 dark:focus:ring-white-200 font-medium rounded-lg text-sm px-8 py-8"><AiOutlineArrowLeft/></button>}
+        {/* if() */}
+    {/* setQuestNum(formData.validation) */}
        
         </div>
   
